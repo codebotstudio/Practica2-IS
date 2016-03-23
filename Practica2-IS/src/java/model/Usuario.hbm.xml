@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8/03/2016 11:36:40 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Usuario" table="usuario" schema="public" optimistic-lock="version">
+        <id name="username" type="string">
+            <column name="username" length="25" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="25" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="25" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="25" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="25" not-null="true" />
+        </property>
+        <set name="estudiantes" table="estudiante" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="username" length="25" />
+            </key>
+            <one-to-many class="model.Estudiante" />
+        </set>
+    </class>
+</hibernate-mapping>
